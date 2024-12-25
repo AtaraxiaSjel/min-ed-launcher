@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.11.2]
+
+### Enhancements
+- Support launching the game via umu-launcher
+
 ## [0.11.1]
 
 ### Enhancements
@@ -18,17 +23,17 @@
   ```json
   "processes": [{
     "fileName": "path\\to\\exe",
-    "restartOnRelaunch": true  
+    "restartOnRelaunch": true
   }]
   ```
-  
+
 ### Enhancements
 - Enable restart feature for Epic users. It's still not as seamless as non-Epic accounts. Requires the usage of [Legendary]
   or [Heroic]. Once you've logged in with either, you can go back to using the normal Epic launcher if you wish. It will
-  require re-logging in every few days though, so it may be preferable to just stick with the alternate launchers. 
-  [The Wiki](https://github.com/rfvgyhn/min-ed-launcher/wiki/Using-Legendary-on-Windows) has instructions on how to setup 
+  require re-logging in every few days though, so it may be preferable to just stick with the alternate launchers.
+  [The Wiki](https://github.com/rfvgyhn/min-ed-launcher/wiki/Using-Legendary-on-Windows) has instructions on how to setup
   Legendary.
-- Added an [icon](resources/min-ed-launcher.svg) for the app. Linux users can check the [readme](README.md#icon-on-linux) 
+- Added an [icon](resources/min-ed-launcher.svg) for the app. Linux users can check the [readme](README.md#icon-on-linux)
   for setup instructions.
 - The launcher will now exit instead of waiting for Elite to exit if the following conditions are met:
   1. `/autoquit` is specified
@@ -45,7 +50,7 @@
 ### New Features
 - Add ability to download products if they aren't yet installed
 - Show a more helpful message instead of generic JSON error when Frontier API couldn't verify game ownership.
-  
+
   This error happens intermittently with Steam licenses.
 
 ### Enhancements
@@ -84,7 +89,7 @@
 - Address [CVE-2023-36792], [CVE-2023-36793], [CVE-2023-36794], [CVE-2023-36796] and [CVE-2023-36799] by building with latest version of .net SDK (7.0.401)
 
 ### Misc
-- Update Frontier auth API to use v3.0 endpoints to match changes in default launcher 
+- Update Frontier auth API to use v3.0 endpoints to match changes in default launcher
 
 ## [0.8.2] - 2023-04-12
 
@@ -110,7 +115,7 @@
   as startup processes.
 - Check for updates to the launcher in addition to checking for game updates
 
-  Defaults to on but can be disabled by setting `checkForLauncherUpdates` to `false` in your 
+  Defaults to on but can be disabled by setting `checkForLauncherUpdates` to `false` in your
   [settings file]. This is mainly to inform users of security related updates.
 
 ### Enhancements
@@ -120,7 +125,7 @@
 ### Breaking changes
 - Removed support for reading from STDIN. This will affect linux users launching via legendary.
   - Instead of piping legendary's arguments into min-ed-launcher, use command substitution instead
-    
+
     `WINEPREFIX=/your/wine/prefix /path/to/MinEdLauncher $(legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2>&1 | grep "Launch parameters" | cut -d':' -f 3-) /autorun /edh4 /autoquit`
 
 ### Security
@@ -244,7 +249,7 @@ legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2> >(grep "Launch pa
 - Automatically fix Odyssey filter by providing correct override in default `settings.json`
 
   Users upgrading from previous versions will need to manually update their `settings.json` file or delete it and let it be auto-created again.
-  
+
   Manual update should include the following:
   ```json
   "filterOverrides": [
@@ -261,14 +266,14 @@ legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2> >(grep "Launch pa
 
 ### Breaking Changes
 - Restart option has moved to the `/restart delay` argument and is no longer specified in the config file.
-  
+
   This allows for creating separate shortcuts, one for normal gameplay and one for restarting.
-  
+
   Instead of specifying `restart: { enabled: true, shutdownTimeout: 3 }`, modify your launch options to include `/restart 3`.
 
 ### New Features
 - Add ability to override a product's filter via the config file
-  
+
   Useful for when FDev makes a copy/paste error for a new product (i.e. when they released Odyssey with an "edh" filter instead of "edo")
 
 ## [0.4.0] - 2021-05-11
@@ -276,7 +281,7 @@ legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2> >(grep "Launch pa
 ### New Features
 - Add support for Frontier accounts via the `/frontier` argument. This includes logging in with a single game installation (e.g. Steam) and
   keeping the game up-to-date if you don't use Steam or Epic. See the readme for instructions on how to use this feature.
-  
+
 ### Security
 - Address [CVE-2021-31204] by building with latest version of .net (5.0.6)
 
@@ -309,7 +314,7 @@ legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2> >(grep "Launch pa
 ### Bug Fixes
 
 - Fix not being able to find libsteam_api.so on linux
-- Fix invalid path on windows when looking for a fallback installation path 
+- Fix invalid path on windows when looking for a fallback installation path
 - Fix incorrect linux path in setup instructions
 
 ## [0.1.1] - 2020-12-08
@@ -326,7 +331,8 @@ legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2> >(grep "Launch pa
 
 Initial release
 
-[unreleased]: https://github.com/rfvgyhn/min-ed-launcher/compare/v0.11.1...HEAD
+[unreleased]: https://github.com/rfvgyhn/min-ed-launcher/compare/v0.11.2...HEAD
+[0.11.2]: https://github.com/rfvgyhn/min-ed-launcher/compare/v0.11.1...v0.11.2
 [0.11.1]: https://github.com/rfvgyhn/min-ed-launcher/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/rfvgyhn/min-ed-launcher/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/rfvgyhn/min-ed-launcher/compare/v0.10.0...v0.10.1
